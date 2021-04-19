@@ -7,6 +7,14 @@ authors = ["reechee <richardokonicha@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.6"
 fastapi = "^0.63.0"
+uvicorn = "^0.13.4"
+itsdangerous = "^1.1.0"
+Authlib = "^0.15.3"
+httpx = "^0.17.1"
+motor = "^2.4.0"
+python-decouple = "^3.4"
+dnspython = "^2.1.0"
+email-validator = "^1.1.2"
 
 [tool.poetry.dev-dependencies]
 

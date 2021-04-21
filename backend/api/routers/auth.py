@@ -1,16 +1,15 @@
 from fastapi import APIRouter
 from starlette.responses import HTMLResponse, RedirectResponse
 from authlib.integrations.starlette_client import OAuth, OAuthError
-from starlette.config import Config
 from starlette.requests import Request
-
 from decouple import config
+
+GOOGLE_CLIENT_ID = config("GOOGLE_CLIENT_ID")
+GOOGLE_CLIENT_SECRET = config("GOOGLE_CLIENT_SECRET")
 
 router = APIRouter()
 
-config = Config('../.env')
-
-oauth = OAuth(config)
+oauth = OAuth()
 
 CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'
 oauth.register(
@@ -18,17 +17,19 @@ oauth.register(
     server_metadata_url=CONF_URL,
     client_kwargs={
         'scope': 'openid email profile'
-    }
+    },
+    client_id=GOOGLE_CLIENT_ID,
+    client_secret=GOOGLE_CLIENT_SECRET
 )
 
 
-@router.route('/login')
-async def login(request: Request):
+@router.get('/login')
+async def login(request: Request):  
     redirect_uri = request.url_for('auth')
     return await oauth.google.authorize_redirect(request, redirect_uri)
 
 
-@router.route('/auth')
+@router.get('/auth')
 async def auth(request: Request):
     try:
         token = await oauth.google.authorize_access_token(request)
@@ -39,7 +40,7 @@ async def auth(request: Request):
     return RedirectResponse(url='/')
 
 
-@router.route('/logout')
+@router.get('/logout')
 async def logout(request: Request):
     request.session.pop('user', None)
     return RedirectResponse(url='/')

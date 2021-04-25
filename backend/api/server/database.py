@@ -1,6 +1,8 @@
 import motor.motor_asyncio
 from bson.objectid import ObjectId
 from decouple import config
+from schemas import GoogleUser
+
 
 MONGO_DETAILS = config("MONGO_DETAILS")
 client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_DETAILS)
@@ -28,14 +30,14 @@ async def retrieve_users():
 
 async def add_user(user_data: dict) -> dict:
     user = await users_collection.insert_one(user_data)
-    new_user = await users_collection.find_one({"_id": user.inserted_id})
-    return user_helper(new_user)
+    new_user = await users_collection.find_one({"sub": user.sub})
+    return new_user
 
 
 async def retrieve_user(idd: str) -> dict:
-    user = await users_collection.find_one({"_id": ObjectId(idd)})
+    user = await users_collection.find_one({"sub": idd})
     if user:
-        return user_helper(user)
+        return user
 
 
 async def update_user(idd: str, data: dict):

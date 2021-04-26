@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Body
 from fastapi.encoders import jsonable_encoder
 
-from api.server.database import (
+from database import (
     add_user,
     delete_user,
     retrieve_user,
@@ -9,7 +9,7 @@ from api.server.database import (
     update_user
 )
 
-from api.server.models import (
+from server.models import (
     UserSchema,
     ResponseModel,
     ErrorResponseModel,
@@ -30,6 +30,7 @@ async def add_user_data(user: UserSchema = Body(...)):
 async def get_users():
     users = await retrieve_users()
     if users:
+        users = jsonable_encoder(users)
         return ResponseModel(users, "Users data retrieved successfully")
     return ResponseModel(users, "Empty list returned")
 
@@ -38,6 +39,7 @@ async def get_users():
 async def get_user_data(id):
     user = await retrieve_user(id)
     if user:
+        user = jsonable_encoder(user)
         return ResponseModel(user, "User data retrieved successfully")
     return ErrorResponseModel("An error occurred.", 404, "User doesn't exist.")
 

@@ -1,6 +1,8 @@
 from fastapi import APIRouter, Body
 from fastapi.encoders import jsonable_encoder
-
+from auth_dependency import get_current_active_user
+from schemas import MDLUser
+from fastapi import Depends
 from database import (
     add_user,
     delete_user,
@@ -17,6 +19,11 @@ from server.models import (
 )
 
 router = APIRouter()
+
+
+@router.get("/get_user")
+async def read_users_me(current_user: MDLUser = Depends(get_current_active_user)):
+    return current_user
 
 
 @router.post("/", response_description="Student data added into the database")

@@ -6,11 +6,13 @@ from fastapi.encoders import jsonable_encoder
 from datetime import datetime, timedelta
 from schemas import GoogleUser, MDLUser
 from typing import Optional
+from pydantic import BaseModel, ValidationError
 import settings
 from database import (
     add_user,
     retrieve_user,
 )
+from fastapi import HTTPException
 
 
 async def get_user_from_token(request):
@@ -61,3 +63,21 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, settings.Settings.SECRET_KEY, algorithm=settings.Settings.ALGORITHM)
     return encoded_jwt
+
+
+def decode_access_token(token: str):
+    authenticate_value = f"Bearer"
+    credentials_exception = HTTPException(
+        status_code=401,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": authenticate_value},
+    )
+    try:
+        payload = jwt.decode(token, settings.Settings.SECRET_KEY, algorithms=[settings.Settings.ALGORITHM])
+        sub: str = payload.get("sub")
+        print(f"{payload.get('name')} just walked in")
+        if sub is None:
+            raise credentials_exception
+        return sub
+    except (jwt.PyJWTError, ValidationError):
+        raise credentials_exception

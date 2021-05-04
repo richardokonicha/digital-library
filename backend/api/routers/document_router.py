@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Body
+from fastapi import APIRouter, Body, File, UploadFile
 from fastapi.encoders import jsonable_encoder
 from api.db_utils.document_crud import (
     add_document,
@@ -24,10 +24,11 @@ router = APIRouter()
 
 
 @router.post("/", response_description="Document data added into the database")
-async def add_document_data(doc: DocumentSchema = Body(...)):
-    doc = jsonable_encoder(doc)
-    new_doc = await add_document(doc)
-    return ResponseModel(new_doc, "Document added successfully.")
+async def add_document_data(file: UploadFile = File(...)):
+    # doc = jsonable_encoder(doc)
+    # new_doc = await add_document(doc)
+    # return ResponseModel(new_doc, "Document added successfully.")
+    return {"filename": file.filename}
 
 
 @router.get("/", response_description="Documents retrieved")

@@ -2,15 +2,15 @@ from datetime import timedelta
 from starlette.middleware.sessions import SessionMiddleware
 import uvicorn
 import settings
-from services import get_user_from_token, get_google_user_from_db, create_access_token, decode_access_token
+from helper_utils.services import get_user_from_token, get_google_user_from_db, create_access_token, decode_access_token
 import fastapi
 from fastapi import FastAPI, Depends, Security, Request
 
-from database.database import connect_db, disconnect_db
+from db_utils.database import connect_db, disconnect_db
 from routers.user_router import router as UserRouter
 from routers.document_router import router as DocRouter
 
-from schemas import GoogleUser, MDLUser, Token
+from schema.schemas import GoogleUser, MDLUser, Token
 from dependecies.auth_dependency import get_current_active_user
 
 __all__ = ["App"]
@@ -30,6 +30,7 @@ App = FastAPI(
     default_response_class=fastapi.responses.ORJSONResponse,
     on_startup=[connect_db],
     on_shutdown=[disconnect_db],
+    
     swagger_ui_init_oauth={
         "clientId": settings.Settings.CLIENT_ID,
         "clientSecret": settings.Settings.CLIENT_SECRET

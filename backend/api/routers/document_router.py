@@ -1,9 +1,6 @@
 from fastapi import APIRouter, Body
 from fastapi.encoders import jsonable_encoder
-from auth_dependency import get_current_active_user
-from schemas import MDLUser
-from fastapi import Depends
-from database import (
+from api.db_utils.document_crud import (
     add_document,
     delete_document,
     retrieve_document,
@@ -11,11 +8,11 @@ from database import (
     update_document
 )
 
-from server.models import (
+from api.schema.models import (
     DocumentSchema,
     ResponseModel,
     ErrorResponseModel,
-    UpdateDocumentSchema
+    UpdateDocumentModel
 )
 
 router = APIRouter()
@@ -30,7 +27,7 @@ router = APIRouter()
 async def add_document_data(doc: DocumentSchema = Body(...)):
     doc = jsonable_encoder(doc)
     new_doc = await add_document(doc)
-    return ResponseModel(new_document, "Document added successfully.")
+    return ResponseModel(new_doc, "Document added successfully.")
 
 
 @router.get("/", response_description="Documents retrieved")
@@ -52,7 +49,7 @@ async def get_document_data(id):
 
 
 @router.put("/{id}")
-async def update_document_data(id: str, req: UpdatedocModel = Body(...)):
+async def update_document_data(id: str, req: UpdateDocumentModel = Body(...)):
     req = {k: v for k, v in req.dict().items() if v is not None}
     updated_document = await update_document(id, req)
     if updated_document:

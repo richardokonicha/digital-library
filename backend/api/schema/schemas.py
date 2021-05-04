@@ -61,7 +61,7 @@ class MDLDocument(BaseModel):
     id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
     sub: str
     name: str
-    tags: Optional(List[str])
+    tags: Optional[str]
     file: str
     text: str
 

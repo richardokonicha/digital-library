@@ -1,7 +1,7 @@
 from bson.objectid import ObjectId
-import settings
+from api import settings
 from motor.motor_asyncio import AsyncIOMotorClient
-from schemas import MDLUser
+from api.schema.schemas import MDLUser
 
 
 class DataBase:
@@ -15,9 +15,9 @@ def get_db_client() -> AsyncIOMotorClient:
     if db.client is None:
         print('RECONNECTING TO DB.........')
         db.client = AsyncIOMotorClient(settings.Settings.MONGO_DETAILS)
-        return db.client.mdl_db.get_collection("users")
+        return db.client.mdl_db
     else:
-        return db.client.mdl_db.get_collection("users")
+        return db.client.mdl_db
 
 
 async def connect_db():

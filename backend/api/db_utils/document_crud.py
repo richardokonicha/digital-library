@@ -1,28 +1,31 @@
-from database import get_database
+from api.db_utils.database import get_db_client
+
+from api.schema.schemas import MDLDocument
+
 from bson.objectid import ObjectId
 
 
 # CRUD
-async def retrieve_document():
+async def retrieve_documents():
     doc_collection = get_db_client()
     doc = []
     async for doc in doc_collection.find():
-        doc.append(MDLdoc(**doc))
+        doc.append(MDLDocument(**doc))
     return doc
 
 
-async def add_document(doc_data: dict) -> MDLdoc:
+async def add_document(doc_data: dict) -> MDLDocument:
     doc_collection = get_db_client()
     doc = await doc_collection.insert_one(doc_data)
     new_document = await doc_collection.find_one({"sub": doc.sub})
-    return MDLdoc(**new_document)
+    return MDLDocument(**new_document)
 
 
-async def retrieve_document(idd: str) -> MDLdoc:
+async def retrieve_document(idd: str) -> MDLDocument:
     doc_collection = get_db_client()
     doc = await doc_collection.find_one({"sub": idd})
     if doc:
-        return MDLdoc(**doc)
+        return MDLDocument(**doc)
 
 
 async def update_document(idd: str, data: dict):

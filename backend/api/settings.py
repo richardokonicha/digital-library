@@ -17,7 +17,7 @@ class SettingsClass(pydantic.BaseSettings):
     ORIGINS_LIST: list[str] = pydantic.Field(default=["*"], env="ORIGINS")
     DEBUG: bool = pydantic.Field(default=False)
     RELOAD: bool = pydantic.Field(default=False)
-    HOST: str = pydantic.Field(default="0.0.0.0")
+    HOST: str = pydantic.Field(default="127.0.0.1")
     PORT: int = pydantic.Field(default=8000)
     # logging
     COLOR_LOGS: bool = pydantic.Field(default=False)

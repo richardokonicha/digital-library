@@ -48,8 +48,8 @@ App.add_middleware(SessionMiddleware, secret_key=settings.Settings.SECRET_KEY)
 # )
 
 
-# app.include_router(AuthRouter, tags=["Authentication"], prefix="/authentication")
 App.include_router(UserRouter, tags=["Users"], prefix="/user")
+App.include_router(DocRouter, tags=["Documents"], prefix="/document")
 
 
 @App.post("/token", response_model=Token)

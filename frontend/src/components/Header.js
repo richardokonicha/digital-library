@@ -1,28 +1,38 @@
 import React from 'react';
 import Container from "@material-ui/core/Container"
-import { fade, makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import Badge from '@material-ui/core/Badge';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
+import { fade, makeStyles, useTheme } from '@material-ui/core/styles';
+import { AppBar, Avatar, Toolbar, IconButton, Typography, InputBase, Badge, MenuItem, Menu, useMediaQuery } from '@material-ui/core';
+
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import Image from "next/image"
 
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
+  toolbar: {
+    // minHeight: 128,
+    alignItems: 'flex-basis',
+    // paddingTop: theme.spacing(1),
+    // paddingBottom: theme.spacing(1),
   },
+  menuButton: {
+    [theme.breakpoints.up('sm')]: {
+      marginRight: theme.spacing(2),
+    }
+  },
+  menuIcon: {
+    fontSize: 36,
+    [theme.breakpoints.up('sm')]: {
+      fontSize: 50,
+    }
+  },
+
   title: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
@@ -82,6 +92,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PrimarySearchAppBar() {
   const classes = useStyles();
+  const theme = useTheme();
+  const matchesupsm = useMediaQuery(theme.breakpoints.up('sm'));
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -165,68 +178,76 @@ export default function PrimarySearchAppBar() {
   return (
     <div className={classes.grow}>
       <AppBar position="static">
-          <Container>
+        <Container >
 
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
-          </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
+          <Toolbar disableGutters={true} className={classes.toolbar}>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="open drawer"
+              size="medium"
+            >
+              <MenuIcon className={classes.menuIcon} />
             </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
+            {/* <Typography className={classes.title} variant="h6" noWrap>
+            Material-UI
+          </Typography> */}
+            <IconButton
+              edge="start"
+            >
+              <Image src="/logo1.png" width={matchesupsm ? 50 : 28} height={matchesupsm ? 50 : 28} alt="university logo" >
+              </Image>
+            </IconButton>
+            <div className={classes.grow} />
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase
+                placeholder="Search…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ 'aria-label': 'search' }}
+              />
+
+            </div>
+
+            <div className={classes.sectionDesktop}>
+              {/* <IconButton aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={17} color="secondary">
                 <NotificationsIcon />
               </Badge>
-            </IconButton>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
-        </Toolbar>
+            </IconButton> */}
+              <IconButton
+                
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+                border="1px solid white"
+              >
+                <Avatar  style={{ border: "2px solid white"}} alt="richard" src="/avatart.jpg" />
+              </IconButton>
+            </div>
+
+
+            <div className={classes.sectionMobile}>
+              <IconButton
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="inherit"
+              >
+                <MoreIcon />
+              </IconButton>
+            </div>
+          </Toolbar>
         </Container>
 
       </AppBar>

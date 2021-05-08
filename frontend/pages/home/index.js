@@ -2,6 +2,9 @@ import React from 'react'
 import { Container } from '@material-ui/core'
 import Copyright from '../../src/components/Copyright'
 import Header from '../../src/components/Header'
+import Main from '../../src/components/Main'
+
+
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 
 
@@ -45,11 +48,12 @@ export default function Home(){
     return(
         <ThemeProvider theme={theme}>
         <Header/>
+        
         <Container>
             
-        this ios a test
         <Copyright/>
         </Container>
+        <Main></Main>
         </ThemeProvider>
     )
 }

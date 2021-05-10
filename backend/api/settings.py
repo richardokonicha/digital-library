@@ -35,8 +35,8 @@ class SettingsClass(pydantic.BaseSettings):
     CLIENT_SECRET: str = pydantic.Field(default="ltY2Xyc1gb6P*******")
 
     #s3
-    AWS_SERVER_PUBLIC_KEY: str
-    AWS_SERVER_SECRET_KEY: str
+    # AWS_SERVER_PUBLIC_KEY: str
+    # AWS_SERVER_SECRET_KEY: str
     # database
     MONGO_DETAILS: str = pydantic.Field(default="mongodb+srv://***:***@cluster0.lxeqg.mongodb.net/")
     MONGO_DB_NAME: str = pydantic.Field(default="MDL")

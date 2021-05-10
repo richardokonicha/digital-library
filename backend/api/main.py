@@ -2,7 +2,7 @@ from datetime import timedelta
 from starlette.middleware.sessions import SessionMiddleware
 import uvicorn
 import settings
-from helper_utils.services import get_user_from_token, get_google_user_from_db, create_access_token, decode_access_token
+from service_utils.services import get_user_from_token, get_google_user_from_db, create_access_token, decode_access_token
 import fastapi
 from fastapi import FastAPI, Depends, Security, Request
 

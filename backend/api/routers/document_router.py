@@ -26,9 +26,9 @@ router = APIRouter()
 @router.post("/", response_description="Document data added into the database")
 async def add_document_data(file: UploadFile = File(...)):
     # doc = jsonable_encoder(doc)
-    # new_doc = await add_document(doc)
+    new_doc = await add_document(file)
     # return ResponseModel(new_doc, "Document added successfully.")
-    return {"filename": file.filename}
+    return {"filename": file.filename, "doc": new_doc}
 
 
 @router.get("/", response_description="Documents retrieved")

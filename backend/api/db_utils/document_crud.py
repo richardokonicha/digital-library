@@ -1,29 +1,42 @@
 from api.db_utils.database import get_db_client
-
 from api.schema.schemas import MDLDocument
-
 from bson.objectid import ObjectId
+from api.db_utils.s3_base import s3_auth
+from api.db_utils.s3_crud import get_list_of_buckets, upload_file_to_bucket
+from api.settings import Settings
+from uuid import UUID, uuid4
+from datetime import datetime, time, timedelta
 
 
 # CRUD
 async def retrieve_documents():
-    doc_collection = get_db_client()
-    doc = []
-    async for doc in doc_collection.find():
-        doc.append(MDLDocument(**doc))
-    return doc
+    document_collection = get_db_client().get_collection("documents")
+    docs = []
+    async for doc in document_collection.find():
+        docs.append(MDLDocument(**doc))
+    return docs
 
 
-async def add_document(doc_data: dict) -> MDLDocument:
-    doc_collection = get_db_client()
-    doc = await doc_collection.insert_one(doc_data)
-    new_document = await doc_collection.find_one({"sub": doc.sub})
+async def add_document(file, current_user) -> MDLDocument:
+    s3_client = s3_auth()
+    file_url = upload_file_to_bucket(s3_client, file.file, Settings.S3_BUCKET, "folder", object_name=file.filename)
+    document_collection = get_db_client().get_collection("documents")
+    doc_data = {
+        "uuid": uuid4(),
+        "uploader_sub": current_user.sub,
+        "uploaded_by": current_user.name,
+        "filename": file.filename,
+        "destination_uri": file_url,
+        "tags": ["mechanical"],
+    }
+    doc = await document_collection.insert_one(doc_data)
+    new_document = await document_collection.find_one({"uuid": doc_data["uuid"]})
     return MDLDocument(**new_document)
 
 
 async def retrieve_document(idd: str) -> MDLDocument:
-    doc_collection = get_db_client()
-    doc = await doc_collection.find_one({"sub": idd})
+    document_collection = get_db_client().get_collection("documents")
+    doc = await document_collection.find_one({"uuid": idd})
     if doc:
         return MDLDocument(**doc)
 

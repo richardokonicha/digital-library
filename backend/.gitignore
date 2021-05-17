@@ -1,0 +1,4 @@
+extra/*
+ .env
+/extra/
+/api/.env

@@ -2,8 +2,7 @@ import React from 'react'
 import { Container } from '@material-ui/core'
 import Copyright from '../../src/components/Copyright'
 import Header from '../../src/components/Header'
-import Main from '../../src/components/Main'
-
+import Reading from '../../src/components/Thumbnails'
 
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 
@@ -27,21 +26,7 @@ const theme = createMuiTheme({
             dark: '#000000',
         },
     },
-    // typography: {
-    //     fontFamily: [
-    //         'Helvetica'
-    //     ].join(',')
-    // },
-    // overrides: {
-    //     MuiCssBaseline: {
-    //         '@global': {
-    //             '@font-face': [helvetica]
-    //         }
-    //     }
-    // },
-    // status: {
-    //   danger: orange[500],
-    // },
+ 
   });
 
 export default function Home(){
@@ -51,9 +36,8 @@ export default function Home(){
         
         <Container>
             
-        <Copyright/>
+        <Reading/>
         </Container>
-        <Main></Main>
         </ThemeProvider>
     )
 }

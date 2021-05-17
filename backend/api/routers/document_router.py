@@ -1,5 +1,8 @@
 from fastapi import APIRouter, Body, File, UploadFile
 from fastapi.encoders import jsonable_encoder
+from api.schema.schemas import MDLUser
+from api.dependecies.auth_dependency import get_current_active_user
+from fastapi import Depends
 from api.db_utils.document_crud import (
     add_document,
     delete_document,
@@ -18,21 +21,14 @@ from api.schema.models import (
 router = APIRouter()
 
 
-# @router.get("/get_document")
-# async def read_documents_me(current_document: MDLUser = Depends(get_current_active_user
-#     return current_document
-
-
 @router.post("/", response_description="Document data added into the database")
-async def add_document_data(file: UploadFile = File(...)):
-    # doc = jsonable_encoder(doc)
-    # new_doc = await add_document(doc)
-    # return ResponseModel(new_doc, "Document added successfully.")
-    return {"filename": file.filename}
+async def add_document_data(file: UploadFile = File(...), current_user: MDLUser = Depends(get_current_active_user)):
+    new_doc = await add_document(file, current_user)
+    return ResponseModel(new_doc, "Document added successfully.")
 
 
 @router.get("/", response_description="Documents retrieved")
-async def get_documents():
+async def get_documents(current_user: MDLUser = Depends(get_current_active_user)):
     docs = await retrieve_documents()
     if docs:
         docs = jsonable_encoder(docs)
@@ -41,7 +37,7 @@ async def get_documents():
 
 
 @router.get("/{id}", response_description="documents data retrieved")
-async def get_document_data(id):
+async def get_document_data(id, current_user: MDLUser = Depends(get_current_active_user)):
     doc = await retrieve_document(id)
     if doc:
         doc = jsonable_encoder(doc)
@@ -50,7 +46,7 @@ async def get_document_data(id):
 
 
 @router.put("/{id}")
-async def update_document_data(id: str, req: UpdateDocumentModel = Body(...)):
+async def update_document_data(id: str, req: UpdateDocumentModel = Body(...), current_user: MDLUser = Depends(get_current_active_user)):
     req = {k: v for k, v in req.dict().items() if v is not None}
     updated_document = await update_document(id, req)
     if updated_document:
@@ -66,15 +62,15 @@ async def update_document_data(id: str, req: UpdateDocumentModel = Body(...)):
 
 
 @router.delete("/{id}", response_description="Document deleted from the database")
-async def delete_document_data(id: int):
-    deleted_document = await delete_document(id)
+async def delete_document_data(idd: str, current_user: MDLUser = Depends(get_current_active_user)):
+    deleted_document = await delete_document(idd)
     if deleted_document:
         return ResponseModel(
-            f"Document with ID: {id} removed",
+            f"Document with ID: {idd} removed",
             "Document deleted successfully"
         )
     return ErrorResponseModel(
         "An error occurred",
         404,
-        f"Document with {id}"
+        f"Document with {idd}"
     )

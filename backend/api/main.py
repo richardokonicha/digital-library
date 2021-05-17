@@ -2,16 +2,15 @@ from datetime import timedelta
 from starlette.middleware.sessions import SessionMiddleware
 import uvicorn
 import settings
-from helper_utils.services import get_user_from_token, get_google_user_from_db, create_access_token, decode_access_token
+from service_utils.services import get_user_from_token, get_google_user_from_db, create_access_token
 import fastapi
-from fastapi import FastAPI, Depends, Security, Request
+from fastapi import FastAPI, Request
 
 from db_utils.database import connect_db, disconnect_db
 from routers.user_router import router as UserRouter
 from routers.document_router import router as DocRouter
 
 from schema.schemas import GoogleUser, MDLUser, Token
-from dependecies.auth_dependency import get_current_active_user
 
 __all__ = ["App"]
 

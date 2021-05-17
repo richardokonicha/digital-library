@@ -1,6 +1,7 @@
 from pydantic import BaseModel, EmailStr, HttpUrl, Field
 from bson import ObjectId
 from typing import Optional, List
+from uuid import UUID
 
 
 class PyObjectId(ObjectId):
@@ -53,17 +54,19 @@ class MDLUser(BaseModel):
                     "picture": "https://lh3.googleusercontent.com/a-/AOh14GisT0zIbv0BtXR76NPH83Oz88ZSLbVGSzM_GhJqoQ=s96-c",
                     "given_name": "Richard",
                     "family_name": "Okonicha",
-                    "email_verified": True}
+                    "email_verified": True
+                }
         }
 
 
 class MDLDocument(BaseModel):
     id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
-    sub: str
-    name: str
-    tags: Optional[str]
-    file: str
-    text: str
+    uuid: UUID
+    uploader_sub: str
+    uploaded_by: str
+    filename: str
+    destination_uri: str
+    tags: Optional[List[str]]
 
     class Config:
         allow_population_by_field_name = True
@@ -73,13 +76,12 @@ class MDLDocument(BaseModel):
             "example":
                 {
                     "_id": {"$oid": "608578601973980cd4d6a67c"},
-                    "sub": "11782829400001778",
-                    "name": "Richard Okonicha",
-                    "email": "richardokonicha@gmail.com",
-                    "picture": "https://lh3.googleusercontent.com/a-/AOh14GisT0zIbv0BtXR76NPH83Oz88ZSLbVGSzM_GhJqoQ=s96-c",
-                    "given_name": "Richard",
-                    "family_name": "Okonicha",
-                    "email_verified": True}
+                    "uploader_sub": "11782829400001778",
+                    "uploaded_by": "Richard Okonicha",
+                    "filename": "strength of material",
+                    "destination_uri": "https://s3.us-west-1.wasabisys.com/mechanical-digital-library/folder/oo.png",
+                    "tags": ["mechanical"],
+                }
         }
 
 

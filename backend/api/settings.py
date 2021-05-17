@@ -41,16 +41,8 @@ class SettingsClass(pydantic.BaseSettings):
     S3_SERVER_PUBLIC_KEY: str = pydantic.Field(default="LW3AXDQ2HL9*****")
     S3_SERVER_SECRET_KEY: str = pydantic.Field(default="KYjA0FbPLqfRnRph******MFyM6T")
     # database
-    MONGO_DETAILS: str = pydantic.Field(default="mongodb+srv://***:***@cluster0.lxeqg.mongodb.net/")
+    MONGO_DETAILS: str = pydantic.Field(default="mongodb+srv://************/")
     MONGO_DB_NAME: str = pydantic.Field(default="MDL")
-
-    MONGO_TEST_URL: str = pydantic.Field(default="mongodb://0.0.0.0:27017")
-    MONGO_TEST_DB_NAME: str = pydantic.Field(default="test_db")
-    MONGO_LOGGER_COMMAND: bool = pydantic.Field(default=False)
-    MONGO_LOGGER_CONNECTION_POOL: bool = pydantic.Field(default=False)
-    MONGO_LOGGER_HEARTBEAT: bool = pydantic.Field(default=False)
-    MONGO_LOGGER_SERVER: bool = pydantic.Field(default=False)
-    MONGO_LOGGER_TOPOLOGY: bool = pydantic.Field(default=False)
 
     class Config:
         env_file = PROJECT_BASE_DIR / ".env"

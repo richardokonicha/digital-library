@@ -14,13 +14,14 @@ db = DataBase()
 def get_db_client() -> AsyncIOMotorClient:
     if db.client is None:
         print('RECONNECTING TO DB.........')
+
         db.client = AsyncIOMotorClient(settings.Settings.MONGO_DETAILS)
         return db.client.mdl_db
     else:
         return db.client.mdl_db
 
 
-async def connect_db():
+def connect_db():
     print('CONNECTING TO DB')
     """Create database connection."""
     db.client = AsyncIOMotorClient(settings.Settings.MONGO_DETAILS)

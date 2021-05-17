@@ -2,3 +2,5 @@ extra/*
  .env
 /extra/
 /api/.env
+
+.vercel

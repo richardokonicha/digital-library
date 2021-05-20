@@ -1,25 +1,25 @@
 from datetime import timedelta
 from starlette.middleware.sessions import SessionMiddleware
 import uvicorn
-import settings
-from service_utils.services import get_user_from_token, get_google_user_from_db, create_access_token
+from api import settings
+from api.service_utils.services import get_user_from_token, get_google_user_from_db, create_access_token
 import fastapi
 from fastapi import FastAPI, Request
 
-from db_utils.database import connect_db, disconnect_db
-from routers.user_router import router as UserRouter
-from routers.document_router import router as DocRouter
+from api.db_utils.database import connect_db, disconnect_db
+from api.routers.user_router import router as UserRouter
+from api.routers.document_router import router as DocRouter
 
-from schema.schemas import GoogleUser, MDLUser, Token
+from api.schema.schemas import GoogleUser, MDLUser, Token
 
-__all__ = ["App"]
+__all__ = ["app"]
 
 
-App = FastAPI(
+app = FastAPI(
     version="0.0.1",
     debug=settings.Settings.DEBUG,
     title=settings.Settings.PROJECT_NAME,
-    docs_url="/docs/",
+    docs_url="/",
     redoc_url="/redoc/",
     servers=[
         {"url": "http://127.0.0.1:8000/", "description": "Local Development Server"},
@@ -37,8 +37,8 @@ App = FastAPI(
 )
 
 
-App.add_middleware(SessionMiddleware, secret_key=settings.Settings.SECRET_KEY)
-# App.add_middleware(
+app.add_middleware(SessionMiddleware, secret_key=settings.Settings.SECRET_KEY)
+# app.add_middleware(
 #     CORSMiddleware,
 #     allow_origins=["*"],
 #     allow_credentials=True,
@@ -47,11 +47,11 @@ App.add_middleware(SessionMiddleware, secret_key=settings.Settings.SECRET_KEY)
 # )
 
 
-App.include_router(UserRouter, tags=["Users"], prefix="/user")
-App.include_router(DocRouter, tags=["Documents"], prefix="/document")
+app.include_router(UserRouter, tags=["Users"], prefix="/user")
+app.include_router(DocRouter, tags=["Documents"], prefix="/document")
 
 
-@App.post("/token", response_model=Token)
+@app.post("/token", response_model=Token)
 async def login(request: Request):
     google_user: GoogleUser = await get_user_from_token(request)
     db_user: MDLUser = await get_google_user_from_db(google_user)
@@ -63,7 +63,7 @@ async def login(request: Request):
 
 if __name__ == "__main__":
     uvicorn.run(
-        App,
+        app,
         debug=settings.Settings.DEBUG,
         host=settings.Settings.HOST,
         port=settings.Settings.PORT,

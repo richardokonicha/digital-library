@@ -1,0 +1,54 @@
+Authlib @ file:///home/reechee/.cache/pypoetry/artifacts/ff/26/64/a1508db983833e939ff343414c7d1ed74417829597e84e3e98260fe2f3/Authlib-0.15.3-py2.py3-none-any.whl
+boto3 @ file:///home/reechee/.cache/pypoetry/artifacts/67/ab/2a/e202ac1eddbc7db4edaf0f0d086c79b9f450085caa2251659765a61a28/boto3-1.17.66-py2.py3-none-any.whl
+boto3-wasabi==1.5.26
+botocore==1.8.50
+certifi @ file:///home/reechee/.cache/pypoetry/artifacts/d8/df/24/ed696681f34f8916b0aef99138db9a94e37d54684b9829af34a7fd4e39/certifi-2020.12.5-py2.py3-none-any.whl
+cffi @ file:///home/reechee/.cache/pypoetry/artifacts/4f/8f/a0/2aa444364ce297a2ec86aed15a1047f5f5492100318fb1e92c7b2916ff/cffi-1.14.5-cp39-cp39-manylinux1_x86_64.whl
+click @ file:///home/reechee/.cache/pypoetry/artifacts/e2/79/34/a23e9d2f683ed66be11ec3bd760dec3a2fe228cfdedf2071bcf0531b06/click-7.1.2-py2.py3-none-any.whl
+cryptography @ file:///home/reechee/.cache/pypoetry/artifacts/0d/0d/38/ef29024622c6551dfe90a30b5e1e693496287944a91646099b9779f9f8/cryptography-3.4.7-cp36-abi3-manylinux2014_x86_64.whl
+dnspython @ file:///home/reechee/.cache/pypoetry/artifacts/f1/c1/44/a2a8abff72fd5ece839f28105bb297c3f5f43855669510fa06b9484ace/dnspython-2.1.0-py3-none-any.whl
+docutils==0.17.1
+email-validator @ file:///home/reechee/.cache/pypoetry/artifacts/bf/d8/fd/1cc1c670b6755598ce0b230f55e07a594aaedc6c7036fd46ed019f2ffe/email_validator-1.1.2-py2.py3-none-any.whl
+fastapi @ file:///home/reechee/.cache/pypoetry/artifacts/a9/a1/33/bf986a3433591f4d9956b333a2c4ad9a7643cb7a7e7ea3dd014ac6d3b5/fastapi-0.63.0-py3-none-any.whl
+future==0.18.2
+h11 @ file:///home/reechee/.cache/pypoetry/artifacts/bc/67/35/dab5a305c7a43c7a517d86674f35006dbb43c6746d19f419698f568164/h11-0.12.0-py3-none-any.whl
+httpcore @ file:///home/reechee/.cache/pypoetry/artifacts/32/2c/a6/51c11c59066eae8f1f929ea46eee5c8ce7d8e6185978e10b5b1973e21d/httpcore-0.12.3-py3-none-any.whl
+httpx @ file:///home/reechee/.cache/pypoetry/artifacts/8a/a3/f2/21c49523f1c9dd888c2d729c6057d63acd0b40612d5f4736d7628c7501/httpx-0.17.1-py3-none-any.whl
+idna @ file:///home/reechee/.cache/pypoetry/artifacts/0c/64/dc/e4e00e94e308b8217cdef21c8130a3a39c07e2490d97439295a00f2616/idna-3.1-py3-none-any.whl
+itsdangerous @ file:///home/reechee/.cache/pypoetry/artifacts/82/e8/60/17593e06004d937316208bbf3859251fdedf80e106b9847181760ee2dd/itsdangerous-1.1.0-py2.py3-none-any.whl
+Jinja2 @ file:///home/reechee/.cache/pypoetry/artifacts/c5/c3/19/5cf0bc7ff64d230dd7d23c044479d2b44dabe877ca4165c2d85cbe996d/Jinja2-2.11.3-py2.py3-none-any.whl
+jmespath @ file:///home/reechee/.cache/pypoetry/artifacts/2c/f0/52/b0ba93d941bd49c8719dee7ca27d2096bf96e17948667388c3ee2ac8f8/jmespath-0.10.0-py2.py3-none-any.whl
+joblib @ file:///home/reechee/.cache/pypoetry/artifacts/28/41/26/7ed6532cff9d56b8d2878f93bc289c075f338c12aa7d630862aae39d45/joblib-1.0.1-py3-none-any.whl
+jwt @ file:///home/reechee/.cache/pypoetry/artifacts/3b/d6/b7/8b12a319a9cabed14ac1617724ef3ff3b61f14a79110fedcba6625e9c5/jwt-1.2.0-py3-none-any.whl
+livereload==2.6.3
+lunr @ file:///home/reechee/.cache/pypoetry/artifacts/04/13/dd/6e1c0df5567442d22e635f8c8d4a027341677282dbb30b01606c6fed86/lunr-0.5.8-py2.py3-none-any.whl
+Markdown @ file:///home/reechee/.cache/pypoetry/artifacts/da/af/46/eb8d4f8d13e1e9e97b2edc459cf23b6e8c1db2461658100869cef1d74d/Markdown-3.3.4-py3-none-any.whl
+MarkupSafe @ file:///home/reechee/.cache/pypoetry/artifacts/a4/78/86/1bb0a788648c202bcaa2e95a65f75ad0939c3d4fe432ce5b720eb424d3/MarkupSafe-1.1.1-cp39-cp39-manylinux2010_x86_64.whl
+mkdocs @ file:///home/reechee/.cache/pypoetry/artifacts/96/e7/63/c61b0d9f3d6dd6de0a5b785ff043d54449ee492f60c402b18c91201890/mkdocs-1.1.2-py3-none-any.whl
+mkdocs-material @ file:///home/reechee/.cache/pypoetry/artifacts/28/77/5c/c474b257ed92e3f33337bc0f5d74469e263b4fae348b0c38920ce399b8/mkdocs_material-7.1.3-py2.py3-none-any.whl
+mkdocs-material-extensions @ file:///home/reechee/.cache/pypoetry/artifacts/8f/bb/5c/e70d1013dd5f56ed6ec37c6c598cab02ac35f937131048d4725e42e822/mkdocs_material_extensions-1.0.1-py3-none-any.whl
+motor @ file:///home/reechee/.cache/pypoetry/artifacts/b7/73/55/b7b446b5c23d0fae8d0395414fa28c8917c6a3827ef45055cd61162a7d/motor-2.4.0-py3-none-any.whl
+nltk @ file:///home/reechee/.cache/pypoetry/artifacts/18/6d/ee/ffa73af7527056102cff0b73ffa10fc5a7ffa898f9214d546e6ec70b57/nltk-3.6.2-py3-none-any.whl
+orjson @ file:///home/reechee/.cache/pypoetry/artifacts/13/fc/95/e3ad162b53d925aba9b22607964d6680d0a0ac057b1faf079f4058b37d/orjson-3.5.2-cp39-cp39-manylinux2014_x86_64.whl
+pycparser @ file:///home/reechee/.cache/pypoetry/artifacts/37/8e/5a/0ea4f84bc7f11e0e3468110efa2c7783241ea7eaa63a92a751de06f78f/pycparser-2.20-py2.py3-none-any.whl
+pydantic @ file:///home/reechee/.cache/pypoetry/artifacts/12/27/6e/041a5f75426c94ff322bc95bf9c4fd21ed53e99abbcb45d7b3e4d823b4/pydantic-1.7.3-cp39-cp39-manylinux2014_x86_64.whl
+Pygments @ file:///home/reechee/.cache/pypoetry/artifacts/bf/63/90/6f6342dd06f01126b4c490f6da1ddcbcc30899480e797b1e6bb21fc8b7/Pygments-2.8.1-py3-none-any.whl
+PyJWT @ file:///home/reechee/.cache/pypoetry/artifacts/b2/e3/60/7bf4d6bd70954d0409a758856b1b80d26c2af47664513bba5adbe57257/PyJWT-2.0.1-py3-none-any.whl
+pymdown-extensions @ file:///home/reechee/.cache/pypoetry/artifacts/c2/6f/52/61aa56b6f9486c648238e455d5d4e98d511ceb38a407c749b39e1edef6/pymdown_extensions-8.1.1-py3-none-any.whl
+pymongo @ file:///home/reechee/.cache/pypoetry/artifacts/fc/da/2b/f756184751be02b15320496f496dee4fd0dcedadb4dc5d96adaa4d1dc9/pymongo-3.11.3-cp39-cp39-manylinux2014_x86_64.whl
+PyMuPDF==1.18.13
+python-dateutil @ file:///home/reechee/.cache/pypoetry/artifacts/93/67/cf/49f56d9e954addcfc50e5ffc9faee013c2eb00c6d77d56c6a22cb33b54/python_dateutil-2.8.1-py2.py3-none-any.whl
+python-decouple @ file:///home/reechee/.cache/pypoetry/artifacts/d2/0b/b5/ae15ff5121558626e78951022bcfa47d4c5a945621354ac4d376395d30/python_decouple-3.4-py3-none-any.whl
+python-dotenv @ file:///home/reechee/.cache/pypoetry/artifacts/37/69/c7/a0ca0c76db10e4d9cb59b26d67ad3eb036da7146a585b1f75126ca28db/python_dotenv-0.17.0-py2.py3-none-any.whl
+python-multipart==0.0.5
+PyYAML @ file:///home/reechee/.cache/pypoetry/artifacts/dd/d9/3d/cbc42de28fcde705eb305497d2f3e5679ca7890234c51348b33c0f428f/PyYAML-5.4.1-cp39-cp39-manylinux1_x86_64.whl
+regex @ file:///home/reechee/.cache/pypoetry/artifacts/95/49/2d/6b7dba3a5f57768df53ce0dbc773ec54be586b22babe6c14330c8cdb20/regex-2021.4.4-cp39-cp39-manylinux2014_x86_64.whl
+rfc3986 @ file:///home/reechee/.cache/pypoetry/artifacts/53/ab/32/17582b9b56a0c9e40749c9ecfdb9384caeaa49b33724dbc1196345c246/rfc3986-1.4.0-py2.py3-none-any.whl
+s3transfer==0.1.13
+six @ file:///home/reechee/.cache/pypoetry/artifacts/dd/1c/65/ad0dea11136f5a869f072890a0eea955aa8fc35b90c85c55249fd3abfe/six-1.15.0-py2.py3-none-any.whl
+sniffio @ file:///home/reechee/.cache/pypoetry/artifacts/d5/26/da/4c1b03b71c2d3fdf83bb7c73a0ddb8cf8071e4633d6d1193909c780cc2/sniffio-1.2.0-py3-none-any.whl
+starlette @ file:///home/reechee/.cache/pypoetry/artifacts/01/ff/79/e5ca5381f72248b8320e08456cb90fcb8ba4c0eab96cf295d2702e7907/starlette-0.13.6-py3-none-any.whl
+tornado @ file:///home/reechee/.cache/pypoetry/artifacts/32/ff/76/0fc7d26eab2180c92fa57552212f38defaf212ceb7ddc9432bd84d646c/tornado-6.1-cp39-cp39-manylinux2010_x86_64.whl
+tqdm @ file:///home/reechee/.cache/pypoetry/artifacts/ee/a5/3d/6994956a8ee6c64962c048703993b09515d885eeedd9db8f036afb672f/tqdm-4.60.0-py2.py3-none-any.whl
+urllib3 @ file:///home/reechee/.cache/pypoetry/artifacts/fa/fd/9d/56169af5b3d1505ce8a40dc152136e8733b2df5060a6f86f013a1a9b3d/urllib3-1.26.4-py2.py3-none-any.whl
+uvicorn @ file:///home/reechee/.cache/pypoetry/artifacts/ff/98/60/497b0419c728bec3cdbf21d3d2a119a9fe59fac4c04e1b28589c68adf0/uvicorn-0.13.4-py3-none-any.whl

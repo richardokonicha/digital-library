@@ -44,6 +44,9 @@ class SettingsClass(pydantic.BaseSettings):
     MONGO_DETAILS: str = pydantic.Field(default="mongodb+srv://************/")
     MONGO_DB_NAME: str = pydantic.Field(default="MDL")
 
+    PROD_SERVER_URL: str = pydantic.Field(default="https://mdl-api.herokuapp.com/")
+
+    
     class Config:
         env_file = PROJECT_BASE_DIR / ".env"
 

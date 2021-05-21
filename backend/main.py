@@ -23,7 +23,7 @@ app = FastAPI(
     redoc_url="/redoc/",
     servers=[
         {"url": "http://127.0.0.1:8000/", "description": "Local Development Server"},
-        {"url": "https://dev.mdl.com", "description": "Production server"},
+        {"url": settings.Settings.PROD_SERVER_URL, "description": "Production server"},
     ],
     description="Quick start FastAPI project template",
     default_response_class=fastapi.responses.ORJSONResponse,

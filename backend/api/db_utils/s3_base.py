@@ -1,7 +1,7 @@
 import boto3
 from botocore.client import BaseClient
 
-from api.settings import Settings
+from backend.api.settings import Settings
 
 
 def s3_auth() -> BaseClient:

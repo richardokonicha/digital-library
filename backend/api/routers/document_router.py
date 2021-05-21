@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Body, File, UploadFile
 from fastapi.encoders import jsonable_encoder
-from api.schema.schemas import MDLUser
-from api.dependecies.auth_dependency import get_current_active_user
+from backend.api.schema.schemas import MDLUser
+from backend.api.dependecies.auth_dependency import get_current_active_user
 from fastapi import Depends
-from api.db_utils.document_crud import (
+from backend.api.db_utils.document_crud import (
     add_document,
     delete_document,
     retrieve_document,
@@ -11,7 +11,7 @@ from api.db_utils.document_crud import (
     update_document
 )
 
-from api.schema.models import (
+from backend.api.schema.models import (
     DocumentSchema,
     ResponseModel,
     ErrorResponseModel,

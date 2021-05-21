@@ -1,6 +1,6 @@
 from bson.objectid import ObjectId
-from api.schema.schemas import MDLUser
-from api.db_utils.database import get_db_client
+from backend.api.schema.schemas import MDLUser
+from backend.api.db_utils.database import get_db_client
 
 
 # CRUD

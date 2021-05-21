@@ -1,9 +1,9 @@
-from api import settings
+from backend.api import settings
 from fastapi.security import OAuth2AuthorizationCodeBearer
 from fastapi import Depends
-from api.service_utils.services import decode_access_token
-from api.db_utils.user_crud import retrieve_user
-from api.schema.schemas import MDLUser
+from backend.api.service_utils.services import decode_access_token
+from backend.api.db_utils.user_crud import retrieve_user
+from backend.api.schema.schemas import MDLUser
 
 
 oauth2_scheme = OAuth2AuthorizationCodeBearer(

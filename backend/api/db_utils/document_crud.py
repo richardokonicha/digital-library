@@ -1,9 +1,9 @@
-from api.db_utils.database import get_db_client
-from api.schema.schemas import MDLDocument
+from backend.api.db_utils.database import get_db_client
+from backend.api.schema.schemas import MDLDocument
 from bson.objectid import ObjectId
-from api.db_utils.s3_base import s3_auth
-from api.db_utils.s3_crud import get_list_of_buckets, upload_file_to_bucket
-from api.settings import Settings
+from backend.api.db_utils.s3_base import s3_auth
+from backend.api.db_utils.s3_crud import get_list_of_buckets, upload_file_to_bucket
+from backend.api.settings import Settings
 from uuid import UUID, uuid4
 from datetime import datetime, time, timedelta
 

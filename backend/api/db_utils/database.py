@@ -1,7 +1,7 @@
 from bson.objectid import ObjectId
-from api import settings
+from backend.api import settings
 from motor.motor_asyncio import AsyncIOMotorClient
-from api.schema.schemas import MDLUser
+from backend.api.schema.schemas import MDLUser
 
 
 class DataBase:

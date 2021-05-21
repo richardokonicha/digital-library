@@ -14,7 +14,7 @@ class SettingsClass(pydantic.BaseSettings):
     PROJECT_NAME: str = pydantic.Field(default="Mechanical Digital Library")
     BASE_DIR: pydantic.DirectoryPath = pydantic.Field(default=PROJECT_BASE_DIR)
     SECRET_KEY: str = pydantic.Field(default="SECRET")
-    ORIGINS_LIST: list[str] = pydantic.Field(default=["*"], env="ORIGINS")
+    ORIGINS_LIST: list = pydantic.Field(default=["*"], env="ORIGINS")
     DEBUG: bool = pydantic.Field(default=False)
     RELOAD: bool = pydantic.Field(default=False)
     HOST: str = pydantic.Field(default="127.0.0.1")

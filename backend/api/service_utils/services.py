@@ -4,11 +4,11 @@ from urllib.parse import parse_qs
 import httpx
 from fastapi.encoders import jsonable_encoder
 from datetime import datetime, timedelta
-from api.schema.schemas import GoogleUser, MDLUser
+from backend.api.schema.schemas import GoogleUser, MDLUser
 from typing import Optional
 from pydantic import BaseModel, ValidationError
-from api import settings
-from api.db_utils.user_crud import (
+from backend.api import settings
+from backend.api.db_utils.user_crud import (
     add_user,
     retrieve_user,
 )

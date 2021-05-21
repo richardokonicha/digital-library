@@ -3,8 +3,8 @@ from botocore.exceptions import ClientError
 from enum import Enum
 from botocore.client import BaseClient
 from fastapi import Depends
-from api.db_utils.s3_base import s3_auth
-from api.settings import Settings
+from backend.api.db_utils.s3_base import s3_auth
+from backend.api.settings import Settings
 
 
 def upload_file_to_bucket(s3_client, file_obj, bucket, folder, object_name=None):

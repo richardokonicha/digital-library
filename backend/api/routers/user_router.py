@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Body
 from fastapi.encoders import jsonable_encoder
-from api.dependecies.auth_dependency import get_current_active_user
-from api.schema.schemas import MDLUser
+from backend.api.dependecies.auth_dependency import get_current_active_user
+from backend.api.schema.schemas import MDLUser
 from fastapi import Depends
-from api.db_utils.user_crud import (
+from backend.api.db_utils.user_crud import (
     add_user,
     delete_user,
     retrieve_user,
@@ -11,7 +11,7 @@ from api.db_utils.user_crud import (
     update_user
 )
 
-from api.schema.models import (
+from backend.api.schema.models import (
     UserSchema,
     ResponseModel,
     ErrorResponseModel,

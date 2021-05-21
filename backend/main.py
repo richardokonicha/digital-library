@@ -1,16 +1,16 @@
 from datetime import timedelta
 from starlette.middleware.sessions import SessionMiddleware
 import uvicorn
-from api import settings
-from api.service_utils.services import get_user_from_token, get_google_user_from_db, create_access_token
+from backend.api import settings
+from backend.api.service_utils.services import get_user_from_token, get_google_user_from_db, create_access_token
 import fastapi
 from fastapi import FastAPI, Request
 
-from api.db_utils.database import connect_db, disconnect_db
-from api.routers.user_router import router as UserRouter
-from api.routers.document_router import router as DocRouter
+from backend.api.db_utils.database import connect_db, disconnect_db
+from backend.api.routers.user_router import router as UserRouter
+from backend.api.routers.document_router import router as DocRouter
 
-from api.schema.schemas import GoogleUser, MDLUser, Token
+from backend.api.schema.schemas import GoogleUser, MDLUser, Token
 
 __all__ = ["app"]
 

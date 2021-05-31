@@ -1,28 +1,44 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import React from 'react'
+import { Container } from '@material-ui/core'
+import Copyright from '../src/components/Copyright'
 import Header from '../src/components/Header'
-import {Container} from "@material-ui/core";
-import Copyright from "../src/components/Copyright";
-import Main from "../src/components/Main";
-import {ThemeProvider} from "@material-ui/core/styles";
-import React from "react";
-
-export default function Home() {
-  return (
-      <>
-          <Header/>
+import Main from '../src/components/Main'
 
 
-      {/*  <footer className={styles.footer}>*/}
-      {/*  <a*/}
-      {/*    href="https://www.unn.edu.ng/"*/}
-      {/*    target="_blank"*/}
-      {/*    rel="noopener noreferrer"*/}
-      {/*  >*/}
-      {/*    To restore the diginity of man {' '}*/}
-      {/*    <img src="/assets/favicon/android-chrome-192x192.png" alt="UNN Logo" className={styles.logo} />*/}
-      {/*  </a>*/}
-      {/*</footer>*/}
-      </>
-  )
+import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import Stories from '../src/components/Stories'
+
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            light: '#096C3A',
+            main: '#096C3A',
+            dark: '#096C3A',
+        },
+        secondary: {
+            light: '#5b5b5b',
+            main: '#333333',
+            grey: '#FFFFFFA1',
+        },
+        text: {
+            light: '#B0B3B8',
+            main: '#E4E6EB',
+            dark: '#000000',
+        },
+    },
+  });
+
+export default function Home(){
+    return(
+        <ThemeProvider theme={theme}>
+        <Header/>
+        <Stories/>
+        
+        <Main></Main>
+        <Container>
+            
+        <Copyright/>
+        </Container>
+        </ThemeProvider>
+    )
 }

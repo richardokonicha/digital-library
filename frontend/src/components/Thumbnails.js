@@ -26,7 +26,7 @@ const HomePage = () => {
                 }}
             >
                 <Viewer
-                    fileUrl="/pdf-open-parameters.pdf"
+                    fileUrl="https://dl.airtable.com/.attachments/d350ec0a6e168c1d5e3759c142ee6eb1/9bed5ceb/Summary1.pdf"
                     plugins={[
                         // defaultLayoutPluginInstance,
                         thumbnailPluginInstance,

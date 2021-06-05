@@ -2,7 +2,7 @@ import React from 'react'
 import { Container } from '@material-ui/core'
 import Copyright from '../src/components/Copyright'
 import Header from '../src/components/Header'
-import Main from '../src/components/Main'
+import Main from '../src/components/Home/Main'
 
 
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';

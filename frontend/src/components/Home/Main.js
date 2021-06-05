@@ -1,13 +1,14 @@
-import { Box, Card, Container, Grid} from "@material-ui/core"
-import { makeStyles} from "@material-ui/core/styles"
+import { Box, Card, Container, Grid } from "@material-ui/core"
+import { makeStyles } from "@material-ui/core/styles"
 import Image from 'next/image'
+import DocPreview from "./DocPreview"
 
 const useStyles = makeStyles((theme) => ({
-    card:{
+    card: {
         padding: theme.spacing(4),
         // backgroundColor: theme.palette.secondary.light,
         position: 'relative'
-        
+
     },
     boxcover: {
         position: 'relative',
@@ -15,30 +16,25 @@ const useStyles = makeStyles((theme) => ({
         height: theme.spacing(50),
         borderRadius: theme.spacing(20),
         // [theme.breakpoints.down("sm")]: {
-            // height: theme.spacing(10),
-// 
+        // height: theme.spacing(10),
+        // 
         // }
     },
     img: {
         objectPosition: "100% 10%"
-
     },
-    book: {
-        backgroundColor: "black",
-        width: theme.spacing(22),
-        height: theme.spacing(26),
-        borderRadius: theme.spacing(1),
-        
+    overflow: {
+        overflow: "hidden"
+    },
 
-    }
+
 }))
-
 
 const Main = () => {
     const classes = useStyles()
-    return(
+    return (
         <Container>
-                <Box className={classes.boxcover} >
+            <Box className={classes.boxcover} >
                 <Image
                     alt="Mountains"
                     src="/bcover.png"
@@ -50,21 +46,18 @@ const Main = () => {
                     className={classes.img}
                     quality={100}
                 />
-                </Box>
-                <Grid container>
-                    <Grid item sm={6}>
-                        <Box  className={classes.book}>
-                            
-                        </Box>
-                    
-                    </Grid>
-                    <Grid item sm={4}>
-                    <Box >
-                            jhgjhj
-                        </Box>
-                    </Grid>
-
+            </Box>
+            <Grid container className={classes.overflow}>
+                <Grid item sm={6}>
+                    <DocPreview></DocPreview>
                 </Grid>
+                <Grid item sm={4}>
+                    <Box >
+                        jhgjhj
+                        </Box>
+                </Grid>
+
+            </Grid>
         </Container>
     )
 }

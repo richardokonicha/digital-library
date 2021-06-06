@@ -61,5 +61,6 @@ export const getStaticProps = async () => {
         props: {
             stories: stories.records
         },
+        revalidate: 10
     };
 };

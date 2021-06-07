@@ -16,10 +16,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   toolbar: {
-    // minHeight: 128,
     alignItems: 'flex-basis',
-    // paddingTop: theme.spacing(1),
-    // paddingBottom: theme.spacing(1),
   },
   menuButton: {
     [theme.breakpoints.up('sm')]: {
@@ -68,7 +65,6 @@ const useStyles = makeStyles((theme) => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -222,7 +218,7 @@ export default function PrimarySearchAppBar() {
               </Badge>
             </IconButton> */}
               <IconButton
-                
+
                 edge="end"
                 aria-label="account of current user"
                 aria-controls={menuId}
@@ -231,7 +227,7 @@ export default function PrimarySearchAppBar() {
                 color="inherit"
                 border="1px solid white"
               >
-                <Avatar  style={{ border: "2px solid white"}} alt="richard" src="/avatart.jpg" />
+                <Avatar style={{ border: "2px solid white" }} alt="richard" src="/avatart.jpg" />
               </IconButton>
             </div>
 

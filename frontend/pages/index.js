@@ -1,8 +1,14 @@
 import React from 'react'
 import { Container } from '@material-ui/core'
-import Copyright from '../src/components/Copyright'
+// import Copyright from '../src/components/Copyright'
 import Header from '../src/components/Header'
 import Main from '../src/components/Home/Main'
+import dynamic from 'next/dynamic'
+
+const Copyright = dynamic(
+    () => import('../src/components/Copyright'),
+    { ssr: false }
+)
 
 
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
@@ -26,19 +32,49 @@ const theme = createMuiTheme({
             dark: '#000000',
         },
     },
-  });
+});
 
-export default function Home(){
-    return(
+export default function Home({ stories, materials }) {
+    console.log(materials)
+    return (
         <ThemeProvider theme={theme}>
-        <Header/>
-        <Stories/>
-        
-        <Main></Main>
-        <Container>
-            
-        <Copyright/>
-        </Container>
+            <Header />
+            <Stories stories={stories} />
+
+            <Main materials={materials}></Main>
+            {/* <Container>
+
+                <Copyright />
+            </Container> */}
         </ThemeProvider>
     )
 }
+
+
+
+const obj = {
+    method: 'GET',
+    headers: {
+        'Authorization': `Bearer ${process.env.AIRTABLE_API_KEY}`,
+        'Content-Type': 'application/json',
+    },
+}
+
+export const getStaticProps = async () => {
+    const res = await fetch('https://api.airtable.com/v0/app89hVUuXaclfNRh/stories?maxRecords=10&view=Grid%20view', obj);
+    const stories = await res.json();
+
+
+    const resm = await fetch('https://api.airtable.com/v0/app89hVUuXaclfNRh/materials?maxRecords=10&view=Grid%20view', obj);
+    const materials = await resm.json();
+
+
+
+    return {
+        props: {
+            stories: stories.records,
+            materials: materials.records,
+        },
+        revalidate: 10
+    };
+};

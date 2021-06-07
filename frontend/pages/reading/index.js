@@ -2,7 +2,7 @@ import React from 'react'
 import { Container } from '@material-ui/core'
 import Copyright from '../../src/components/Copyright'
 import Header from '../../src/components/Header'
-import Reading from '../../src/components/Thumbnails'
+import Reading from '../../src/components/Reading'
 
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 
@@ -26,18 +26,18 @@ const theme = createMuiTheme({
             dark: '#000000',
         },
     },
- 
-  });
 
-export default function Home(){
-    return(
+});
+
+export default function Home() {
+    return (
         <ThemeProvider theme={theme}>
-        <Header/>
-        
-        <Container>
-            
-        <Reading/>
-        </Container>
+            <Header />
+
+            <Container>
+
+                <Reading />
+            </Container>
         </ThemeProvider>
     )
 }

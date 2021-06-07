@@ -4,6 +4,7 @@ import { Avatar } from '@material-ui/core'
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import Image from 'material-ui-image';
+import Link from "next/link"
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -52,7 +53,7 @@ const stories = [
 	{ id: 8, author: 'Prof Ubenmene', image: 'jj', content: 'some annoucement' },
 ]
 
-const Book = () => {
+const Book = ({ material }) => {
 	const classes = useStyles();
 	return (
 		<Card className={classes.card} elevation={4}>
@@ -60,7 +61,7 @@ const Book = () => {
 				<CardMedia
 					component="img"
 					className={classes.media}
-					image="https://dl.airtable.com/.attachmentThumbnails/3e6687d2168125445794cf5414fa58c7/f1506b66"
+					image={material.fields["Attachments"][0].thumbnails.large.url}
 					title="fdfd"
 				>
 				</CardMedia>
@@ -71,22 +72,34 @@ const Book = () => {
 }
 
 
-const DocPreview = () => {
+const DocPreview = ({ materials }) => {
 	const classes = useStyles();
 	return (
 		<div className={classes.root}>
-			<Box fontWeight="fontWeightBold" fontSize={16}>Materials</Box>
+			<Box fontWeight="fontWeightBold" fontSize={16}>Most sort out Materials</Box>
 			<GridList className={classes.gridList} cols={3.5} cellHeight='auto' spacing={18}>
-				{stories.map(story => (
-					<GridListTile key={story.id}  >
-						<Book />
+				{materials.map(material => (
+					<GridListTile key={material.id}  >
+
+
+						<Book material={material} />
+
 						<GridListTileBar
-							title="Nuclear engineering"
+							title={material.fields.Name}
 							subtitle={<span>by: Richard Okonicha</span>}
 							actionIcon={
-								<IconButton aria-label={`info about Nuclear`} className={classes.icon}>
-									<InfoIcon />
-								</IconButton>
+								<Link
+									component='a'
+									href={{
+										pathname: "/reading",
+										query: { uri: material.fields["Attachments"][0].url },
+									}}
+								>
+									<IconButton aria-label={`info about Nuclear`} className={classes.icon}>
+										<InfoIcon />
+									</IconButton>
+								</Link>
+
 							} />
 					</GridListTile >
 				))}

@@ -11,6 +11,7 @@ import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import UploadIcon from '@material-ui/icons/CloudUpload'
 import { DropzoneArea } from 'material-ui-dropzone';
+import Link from 'next/link'
 
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
@@ -55,18 +56,27 @@ const MobileBar = () => {
             <Hidden smUp>
                 <AppBar position="fixed" color="primary" className={classes.appBar}>
                     <Toolbar variant='dense' className={classes.toolbar}>
-                        <IconButton color="inherit" aria-label="open drawer">
-                            <HomeIcon />
-                        </IconButton>
-                        <IconButton color="inherit">
-                            <PeopleAltIcon />
-                        </IconButton>
-                        <IconButton color="inherit">
-                            <DateRangeIcon />
-                        </IconButton>
+                        <Link href="/#" >
+                            <IconButton color="inherit" aria-label="open drawer">
+                                <HomeIcon />
+                            </IconButton>
+                        </Link>
+                        <Link href="/#" >
+                            <IconButton color="inherit">
+                                <PeopleAltIcon />
+                            </IconButton>
+                        </Link>
+
+                        <Link href="/calendar" >
+                            <IconButton color="inherit">
+                                <DateRangeIcon />
+                            </IconButton>
+                        </Link>
+
                         <IconButton color="inherit" onClick={handleClickOpen}>
                             <CloudUploadIcon />
                         </IconButton>
+
                     </Toolbar>
                 </AppBar>
                 <Dialog

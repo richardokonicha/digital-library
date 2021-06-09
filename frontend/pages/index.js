@@ -4,15 +4,16 @@ import { Container } from '@material-ui/core'
 import Header from '../src/components/Header'
 import Main from '../src/components/Home/Main'
 import dynamic from 'next/dynamic'
-
-const Copyright = dynamic(
-    () => import('../src/components/Copyright'),
-    { ssr: false }
-)
+import MobileBar from "../src/components/MobileBar"
 
 
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
-import Stories from '../src/components/Stories'
+import Stories from '../src/components/Home/Stories'
+
+// const Copyright = dynamic(
+//     () => import('../src/components/Copyright'),
+//     { ssr: false }
+// )
 
 const theme = createMuiTheme({
     palette: {
@@ -46,6 +47,7 @@ export default function Home({ stories, materials }) {
 
                 <Copyright />
             </Container> */}
+            <MobileBar />
         </ThemeProvider>
     )
 }

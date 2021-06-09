@@ -2,6 +2,10 @@ import { Box, Button, Card, Container, Grid } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
 import Image from 'next/image'
 import DocPreview from "./DocPreview"
+import ProjPreview from "./ProjPreview"
+
+import Link from 'next/link'
+import Hidden from '@material-ui/core/Hidden';
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -36,46 +40,59 @@ const Main = ({ materials }) => {
     const classes = useStyles()
     return (
         <Container>
-            <Container maxWidth="md">
-                <Box display="flex" m={2} justifyContent="space-around" flexDirection='row'  >
-                    <Box >
-                        <Button color="inherit" className={classes.btn}>Home</Button>
+            <Hidden xsDown>
+                <Container maxWidth="md">
+                    <Box display="flex" m={2} justifyContent="space-around" flexDirection='row'  >
+                        <Box >
+                            {/* <Link > */}
+                            <Button color="inherit" className={classes.btn}>Home</Button>
+                            {/* </Link> */}
+                        </Box>
+                        <Box >
+                            <Link href="/upload" >
+                                <Button color="inherit" className={classes.btn}>My classes</Button>
+                            </Link>
+                        </Box>
+                        <Box >
+                            <Link href="/upload" >
+                                <Button color="inherit" className={classes.btn}>Academic calender</Button>
+                            </Link>
+                        </Box>
+                        <Box >
+                            {/* <Link> */}
+                            <Button color="inherit" href="/upload" className={classes.btn}>Create uploads</Button>
+                            {/* </Link> */}
+                        </Box>
                     </Box>
-                    <Box >
-                        <Button color="inherit" className={classes.btn}>My classes</Button>
-                    </Box>
-                    <Box >
-                        <Button color="inherit" className={classes.btn}>Academic calender</Button>
-                    </Box>
-                    <Box >
-                        <Button color="inherit" className={classes.btn}>Create uploads</Button>
-                    </Box>
+                </Container>
+                <Box className={classes.boxcover} flexDirection="column" display="flex" alignContent="center" >
+                    <Image
+                        alt="Mountains"
+                        src="/bcover.png"
+                        // layout="fill"
+                        width={345}
+                        height={240}
+                        // sizes="50px"
+                        // objectFit="contain"
+                        className={classes.img}
+                        quality={100}
+                    />
                 </Box>
-            </Container>
-            <Box className={classes.boxcover} flexDirection="column" display="flex" alignContent="center" >
-                <Image
-                    alt="Mountains"
-                    src="/bcover.png"
-                    // layout="fill"
-                    width={345}
-                    height={240}
-                    // sizes="50px"
-                    // objectFit="contain"
-                    className={classes.img}
-                    quality={100}
-                />
-            </Box>
+            </Hidden>
+
+
+
             <Grid container className={classes.overflow}>
                 <Grid item sm={6}>
                     <DocPreview materials={materials}></DocPreview>
                 </Grid>
                 <Grid item sm={4}>
-                    <Box >
-                        jhgjhj
-                        </Box>
+                    <ProjPreview materials={materials}></ProjPreview>
                 </Grid>
 
             </Grid>
+
+            
         </Container>
     )
 }

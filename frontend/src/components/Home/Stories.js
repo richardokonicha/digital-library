@@ -29,7 +29,9 @@ const useStyles = makeStyles((theme) => ({
 		flexDirection: 'column',
 	},
 	avatar: {
-		border: '2px #096C3A solid'
+		border: '2px #096C3A solid',
+		width: theme.spacing(5),
+		height: theme.spacing(5),
 	},
 	img: {
 		width: '100%'
@@ -109,7 +111,7 @@ const Stories = ({ stories }) => {
 		<Container>
 			<Hidden smUp>
 				<div className={classes.root} >
-					<Box fontWeight="fontWeightBold" fontSize={16}>Department of Mechanical engineering annoucements</Box>
+					<Box fontWeight="fontWeightBold" fontSize={10}>Announcements, news and stories</Box>
 					<GridList cellHeight='auto' className={classes.gridList} cols={3.5}>
 						{stories.map(story => (
 							<GridListTile key={story.id}  >

@@ -19,10 +19,9 @@ const useStyles = makeStyles((theme) => ({
 		transform: 'translateZ(0)',
 		paddingTop: theme.spacing(2),
 		paddingBottom: theme.spacing(2),
+		width: 700,
 	},
 	media: {
-		height: 180,
-		minWidth: 50,
 		// boxShadow: 'rgba(0, 0, 0, 0.2) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px',
 		boxShadow: "rgba(0, 0, 0, 0.1) 0px 10px 50px",
 		borderRadius: theme.spacing(0.5),
@@ -31,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	card: {
-		maxWidth: 400,
+		// maxWidth: 400,
 		padding: theme.spacing(1),
 	},
 	icon: {
@@ -41,17 +40,6 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 }))
-
-const stories = [
-	{ id: 1, author: 'Engr Howard Njoku', image: 'jj', content: 'some annoucement' },
-	{ id: 2, author: 'Engr Richard Okonicha', image: 'jj', content: 'some annoucement' },
-	{ id: 3, author: 'Prof Ubenmene', image: 'jj', content: 'some annoucement' },
-	{ id: 4, author: 'Prof Ubenmene', image: 'jj', content: 'some annoucement' },
-	{ id: 5, author: 'Engr Howard Njoku', image: 'jj', content: 'some annoucement' },
-	{ id: 6, author: 'Engr Richard Okonicha', image: 'jj', content: 'some annoucement' },
-	{ id: 7, author: 'Prof Ubenmene', image: 'jj', content: 'some annoucement' },
-	{ id: 8, author: 'Prof Ubenmene', image: 'jj', content: 'some annoucement' },
-]
 
 const Book = ({ material }) => {
 	const classes = useStyles();
@@ -76,14 +64,11 @@ const DocPreview = ({ materials }) => {
 	const classes = useStyles();
 	return (
 		<div className={classes.root}>
-			<Box fontWeight="fontWeightBold" fontSize={16}>Most sort out Materials</Box>
+			<Box fontWeight="fontWeightBold" fontSize={16}>Popular now</Box>
 			<GridList className={classes.gridList} cols={3.5} cellHeight='auto' spacing={18}>
 				{materials.map(material => (
 					<GridListTile key={material.id}  >
-
-
 						<Book material={material} />
-
 						<GridListTileBar
 							title={material.fields.Name}
 							subtitle={<span>by: Richard Okonicha</span>}

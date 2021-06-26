@@ -1,24 +1,9 @@
-import React from 'react';
-import { useCookies } from "react-cookie";
-import Button from '@material-ui/core/Button';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import { SvgIcon, FormControlLabel } from '@material-ui/core';
-import GoogleSvg from "./googleIcon.svg";
-import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment } from "./authenticationSlice"
-import { signInWithGoogle } from '../../firebase/clientApp'
-const GoogleIcon = (props) => {
-    return (
-        <SvgIcon component={GoogleSvg} {...props}>
-        </SvgIcon>
-    );
-}
+import { Link, Paper, Box, Grid, Typography, Button } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
+import GoogleSvg from "./googleIcon.svg"
+import { auth, provider } from '../../firebase/clientApp'
+import { useRouter } from 'next/router'
+
 
 const Copyright = () => {
     return (
@@ -30,7 +15,7 @@ const Copyright = () => {
             {new Date().getFullYear()}
             {'.'}
         </Typography>
-    );
+    )
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -46,57 +31,59 @@ const useStyles = makeStyles((theme) => ({
         backgroundPosition: 'center',
     },
     paper: {
-        margin: theme.spacing(8, 4),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+        margin: theme.spacing(10, 0),
+        padding: theme.spacing(20, 2),
+        border: '2px red solid',
     },
     avatar: {
         margin: theme.spacing(1),
         backgroundColor: theme.palette.secondary.main,
     },
-    form: {
-        width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(1),
-    },
+
     submit: {
         margin: theme.spacing(3, 0, 2),
+        minWidth: theme.spacing(60)
     },
-}));
+
+}))
 
 const SignInSide = () => {
-    const classes = useStyles();
-    // const [cookies, setCookie] = useCookies(["x-access-token"]);
-    const { count } = useSelector((state) => state.auth);
-    const dispatch = useDispatch();
+    const classes = useStyles()
+    const router = useRouter()
+
+    const signinWithGoogle = async () => {
+        return await auth
+            .signInWithPopup(provider)
+            .then((response) => {
+                router.push('/')
+            })
+    }
 
     return (
         <Grid container component="main" className={classes.root}>
             <Grid item xs={false} sm={4} md={7} className={classes.image} />
-            <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-                <div className={classes.paper}>
-                    <GoogleSvg />
-                    <div>{count}</div>
-                    <form className={classes.form} noValidate>
-                        <Button
-                            // type="submit"
-                            fullWidth
-                            variant="contained"
-                            color="primary"
-                            className={classes.submit}
-                            onClick={() => signInWithGoogle()}
-                        >
-                            Sign In
-                        </Button>
+            <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} >
 
-                        <Box mt={5}>
-                            <Copyright />
-                        </Box>
-                    </form>
-                </div>
+                <Box className={classes.paper} display="flex" flexDirection="column" alignItems="center" >
+                    <GoogleSvg />
+                    <Button
+                        size='large'
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                        onClick={signinWithGoogle}
+                    >
+                        Sign In
+                    </Button>
+
+                    <Box mt={5}>
+                        <Copyright />
+                    </Box>
+                </Box>
+
             </Grid>
         </Grid>
-    );
+    )
 }
 
 export default SignInSide

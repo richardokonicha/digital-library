@@ -1,19 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container } from '@material-ui/core'
-// import Copyright from '../src/components/Copyright'
 import Header from '../src/components/Header'
 import Main from '../src/components/Home/Main'
 import dynamic from 'next/dynamic'
 import MobileBar from "../src/components/MobileBar"
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { useCollection } from 'react-firebase-hooks/firestore'
+import firebase from '../firebase/clientApp'
 
 
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import Stories from '../src/components/Home/Stories'
 
-// const Copyright = dynamic(
-//     () => import('../src/components/Copyright'),
-//     { ssr: false }
-// )
 
 const theme = createMuiTheme({
     palette: {
@@ -36,15 +34,51 @@ const theme = createMuiTheme({
 });
 
 export default function Home({ stories, materials }) {
-    console.log(materials)
+    const [ user, loading, error ] = useAuthState(firebase.auth())
+    const [ votes, votesLoading, votesError ] = useCollection(firebase.firestore().collection('votes'), {})
+    const [ image, setImage ] = useState(null)
+
+    if (!votesLoading && votes){
+        votes.docs.map((doc) => console.log(doc.data()))
+    }
+
+    const db = firebase.firestore()
+
+    const addVoteDocument = async (vote) => {
+        await db.collection('votes').doc(user.uid).set({
+            vote,
+        })
+    }
+
+
+    const handleFile = (e) => {
+        if (e.target.files[0]){
+            setImage(e.target.files[0])
+        }
+    }
+
+    const handleSubmit = async () => {
+        const storageRef = firebase.storage().ref()
+        const fileRef = storageRef.child(image.name)
+        await fileRef.put(image)
+        const fileUrl = await fileRef.getDownloadURL()
+        console.log(fileUrl, 'submit')
+
+    }
+    
+
     return (
         <ThemeProvider theme={theme}>
             <Header />
+            <input type='file' onChange={handleFile}></input>
+            <button onClick={handleSubmit}>
+                click me to say yes
+            </button>
+        
             <Stories stories={stories} />
 
             <Main materials={materials}></Main>
             {/* <Container>
-
                 <Copyright />
             </Container> */}
             <MobileBar />
@@ -61,6 +95,8 @@ const obj = {
         'Content-Type': 'application/json',
     },
 }
+console.log(`${process.env}`, 'process')
+
 
 export const getStaticProps = async () => {
     const res = await fetch('https://api.airtable.com/v0/app89hVUuXaclfNRh/stories?maxRecords=10&view=Grid%20view', obj);

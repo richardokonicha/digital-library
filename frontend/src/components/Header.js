@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Container from "@material-ui/core/Container"
 import { fade, makeStyles, useTheme } from '@material-ui/core/styles';
 import { AppBar, Avatar, Toolbar, IconButton, Typography, InputBase, Badge, MenuItem, Menu, useMediaQuery } from '@material-ui/core';
-
+import UserContext from '../context/UserContext';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -10,6 +10,8 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Image from "next/image"
+import firebase from '../../firebase/clientApp';
+import { useRouter } from 'next/router'
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -89,6 +91,11 @@ const useStyles = makeStyles((theme) => ({
 export default function PrimarySearchAppBar() {
   const classes = useStyles();
   const theme = useTheme();
+  const user = useContext(UserContext)
+  console.log(user, 'this is from header')
+  const router = useRouter()
+
+
   const matchesupsm = useMediaQuery(theme.breakpoints.up('sm'));
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -114,6 +121,13 @@ export default function PrimarySearchAppBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const logOut = async () => {
+    router.push('/login')
+    await firebase.auth().signOut()
+
+  };
+
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -125,8 +139,10 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Profilef</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={logOut}>Sign Out</MenuItem>
+
     </Menu>
   );
 

@@ -7,7 +7,7 @@ import MobileBar from "../src/components/MobileBar"
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useCollection } from 'react-firebase-hooks/firestore'
 import firebase from '../firebase/clientApp'
-
+import Layout from '../src/components/Layout'
 
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import Stories from '../src/components/Home/Stories'
@@ -34,7 +34,7 @@ const theme = createMuiTheme({
 });
 
 export default function Home({ stories, materials }) {
-    const [ user, loading, error ] = useAuthState(firebase.auth())
+    // const [ user, loading, error ] = useAuthState(firebase.auth())
     const [ votes, votesLoading, votesError ] = useCollection(firebase.firestore().collection('votes'), {})
     const [ image, setImage ] = useState(null)
 
@@ -69,11 +69,13 @@ export default function Home({ stories, materials }) {
 
     return (
         <ThemeProvider theme={theme}>
-            <Header />
+            <Layout>
             <input type='file' onChange={handleFile}></input>
             <button onClick={handleSubmit}>
                 click me to say yes
             </button>
+            </Layout>
+            
         
             <Stories stories={stories} />
 
@@ -86,8 +88,6 @@ export default function Home({ stories, materials }) {
     )
 }
 
-
-
 const obj = {
     method: 'GET',
     headers: {
@@ -95,17 +95,13 @@ const obj = {
         'Content-Type': 'application/json',
     },
 }
-console.log(`${process.env}`, 'process')
-
 
 export const getStaticProps = async () => {
     const res = await fetch('https://api.airtable.com/v0/app89hVUuXaclfNRh/stories?maxRecords=10&view=Grid%20view', obj);
     const stories = await res.json();
 
-
     const resm = await fetch('https://api.airtable.com/v0/app89hVUuXaclfNRh/materials?maxRecords=10&view=Grid%20view', obj);
     const materials = await resm.json();
-
 
 
     return {

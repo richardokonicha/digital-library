@@ -12,7 +12,7 @@ import { SvgIcon, FormControlLabel } from '@material-ui/core';
 import GoogleSvg from "./googleIcon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { decrement, increment } from "./authenticationSlice"
-
+import { signInWithGoogle } from '../../firebase/clientApp'
 const GoogleIcon = (props) => {
     return (
         <SvgIcon component={GoogleSvg} {...props}>
@@ -66,17 +66,16 @@ const useStyles = makeStyles((theme) => ({
 
 const SignInSide = () => {
     const classes = useStyles();
-    const [cookies, setCookie] = useCookies(["x-access-token"]);
+    // const [cookies, setCookie] = useCookies(["x-access-token"]);
     const { count } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
-    console.log(count, 'couter')
 
     return (
         <Grid container component="main" className={classes.root}>
             <Grid item xs={false} sm={4} md={7} className={classes.image} />
             <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
                 <div className={classes.paper}>
-                    <GoogleSvg/>
+                    <GoogleSvg />
                     <div>{count}</div>
                     <form className={classes.form} noValidate>
                         <Button
@@ -85,27 +84,10 @@ const SignInSide = () => {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
-                            onClick={() => dispatch(increment())}
+                            onClick={() => signInWithGoogle()}
                         >
                             Sign In
                         </Button>
-
-                        {/*<FormControlLabel*/}
-                        {/*    control={<Checkbox value="remember" color="primary" />}*/}
-                        {/*    label="Remember me"*/}
-                        {/*/>*/}
-                        {/*<Grid container>*/}
-                        {/*    <Grid item xs>*/}
-                        {/*        <Link href="#" variant="body2">*/}
-                        {/*            Forgot password?*/}
-                        {/*        </Link>*/}
-                        {/*    </Grid>*/}
-                        {/*    <Grid item>*/}
-                        {/*        <Link href="#" variant="body2">*/}
-                        {/*            {"Don't have an account? Sign Up"}*/}
-                        {/*        </Link>*/}
-                        {/*    </Grid>*/}
-                        {/*</Grid>*/}
 
                         <Box mt={5}>
                             <Copyright />

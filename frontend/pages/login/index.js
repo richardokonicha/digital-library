@@ -3,10 +3,10 @@ import Copyright from '../../src/components/Copyright'
 import SignIn from '../../features/authentication/SignIn'
 
 const Login = () => {
-    return(
+    return (
         <>
-            <SignIn/>
-            <Copyright/>
+            <SignIn />
+            <Copyright />
         </>
     )
 }

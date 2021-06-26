@@ -17,4 +17,10 @@ if (!firebase.apps.length) {
     firebase.initializeApp(clientCredentials)
 }
 
+export const provider = new firebase.auth.GoogleAuthProvider()
+
+export const signInWithGoogle = () => {
+    firebase.auth().signInWithPopup(provider);
+}
+
 export default firebase

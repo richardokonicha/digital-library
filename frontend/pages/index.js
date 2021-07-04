@@ -34,57 +34,28 @@ const theme = createMuiTheme({
 });
 
 export default function Home({ stories, materials }) {
-    // const [ user, loading, error ] = useAuthState(firebase.auth())
-    const [ votes, votesLoading, votesError ] = useCollection(firebase.firestore().collection('votes'), {})
-    const [ image, setImage ] = useState(null)
+    const [user, loading, error] = useAuthState(firebase.auth())
+    const [votes, votesLoading, votesError] = useCollection(firebase.firestore().collection('votes'), {})
 
-    if (!votesLoading && votes){
+    if (!votesLoading && votes) {
         votes.docs.map((doc) => console.log(doc.data()))
     }
 
-    const db = firebase.firestore()
-
-    const addVoteDocument = async (vote) => {
-        await db.collection('votes').doc(user.uid).set({
-            vote,
-        })
-    }
-
-
-    const handleFile = (e) => {
-        if (e.target.files[0]){
-            setImage(e.target.files[0])
-        }
-    }
-
-    const handleSubmit = async () => {
-        const storageRef = firebase.storage().ref()
-        const fileRef = storageRef.child(image.name)
-        await fileRef.put(image)
-        const fileUrl = await fileRef.getDownloadURL()
-        console.log(fileUrl, 'submit')
-
-    }
-    
-
     return (
-        <ThemeProvider theme={theme}>
+        <>
             <Layout>
-            <input type='file' onChange={handleFile}></input>
-            <button onClick={handleSubmit}>
-                click me to say yes
-            </button>
-            </Layout>
-            
-        
-            <Stories stories={stories} />
+                <Stories stories={stories} />
+                <Main materials={materials}></Main>
 
-            <Main materials={materials}></Main>
+                <MobileBar />
+            </Layout>
+
+
+
             {/* <Container>
                 <Copyright />
             </Container> */}
-            <MobileBar />
-        </ThemeProvider>
+        </>
     )
 }
 

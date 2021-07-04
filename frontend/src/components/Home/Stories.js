@@ -6,6 +6,70 @@ import { red, blue, green } from "@material-ui/core/colors";
 import { AutoRotatingCarousel, Slide } from "material-auto-rotating-carousel";
 // import { MenuIcon } from '@material-ui/core/Icon'
 import Hidden from '@material-ui/core/Hidden';
+import { useAuthState } from "react-firebase-hooks/auth";
+import firebase from '../../../firebase/clientApp'
+import { useCollection } from 'react-firebase-hooks/firestore'
+import NavStories from "../Navigation";
+
+const Stories = ({ stories }) => {
+	const classes = useStyles();
+	const [handleOpen, setHandleOpen] = useState({ open: false });
+	const handleClick = () => {
+		setHandleOpen({ open: true });
+	};
+	const matches = useMediaQuery("(max-width:600px)");
+
+	const [user, loading, error] = useAuthState(firebase.auth())
+	const [storiess, storiesLoading, storiesError] = useCollection(firebase.firestore().collection('stories'), {})
+	if (!storiesLoading && storiess) {
+		storiess.docs.map((doc) => console.log(doc.data()))
+	}
+
+
+	return (
+		<Container>
+			<Hidden smUp>
+				<div className={classes.root} >
+					<Box fontWeight="fontWeightBold" fontSize={10}>Announcements, news and stories</Box>
+
+					<GridList cellHeight='auto' className={classes.gridList} cols={3.5}>
+						{storiess?.docs.map(story => (
+							<GridListTile key={story.id}  >
+								<Box flexDirection="column" display="flex" flexWrap="nowrap" onClick={handleClick}>
+									<Box alignSelf="center" >
+										<Avatar alt={story.author} src={story.thumbnails} className={classes.avatar} />
+									</Box>
+									<Box alignSelf="center" textAlign="center" fontWeight="fontWeightRegular" p={1} fontSize={8}>{story.author}</Box>
+									<AutoRotatingCarouselModal
+										stories={stories}
+										isMobile={matches}
+										handleOpen={handleOpen}
+										setHandleOpen={setHandleOpen}
+									/>
+								</Box>
+							</GridListTile >
+						))}
+					</GridList>
+				</div>
+			</Hidden>
+
+			<div>
+
+
+				{/* <Toolbar> */}
+				{/* <NavStories /> */}
+
+
+				{/* </Toolbar> */}
+			</div>
+
+		</Container>
+	)
+}
+
+export default Stories
+
+
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -99,54 +163,3 @@ const AutoRotatingCarouselModal = ({ handleOpen, setHandleOpen, isMobile, storie
 		</div>
 	);
 };
-
-const Stories = ({ stories }) => {
-	const classes = useStyles();
-	const [handleOpen, setHandleOpen] = useState({ open: false });
-	const handleClick = () => {
-		setHandleOpen({ open: true });
-	};
-	const matches = useMediaQuery("(max-width:600px)");
-	return (
-		<Container>
-			<Hidden smUp>
-				<div className={classes.root} >
-					<Box fontWeight="fontWeightBold" fontSize={10}>Announcements, news and stories</Box>
-					<GridList cellHeight='auto' className={classes.gridList} cols={3.5}>
-						{stories.map(story => (
-							<GridListTile key={story.id}  >
-								<Box flexDirection="column" display="flex" flexWrap="nowrap" onClick={handleClick}>
-									<Box alignSelf="center" >
-										<Avatar alt={story.fields.author} src={story.fields["Attachments 2"][0].thumbnails.large.url} className={classes.avatar} />
-									</Box>
-									<Box alignSelf="center" textAlign="center" fontWeight="fontWeightRegular" p={1} fontSize={8}>{story.fields.author}</Box>
-									<AutoRotatingCarouselModal
-										stories={stories}
-										isMobile={matches}
-										handleOpen={handleOpen}
-										setHandleOpen={setHandleOpen}
-									/>
-								</Box>
-							</GridListTile >
-						))}
-					</GridList>
-				</div>
-			</Hidden>
-
-			<div>
-
-
-				{/* <Toolbar> */}
-
-
-
-				{/* </Toolbar> */}
-			</div>
-
-		</Container>
-	)
-}
-
-export default Stories
-
-

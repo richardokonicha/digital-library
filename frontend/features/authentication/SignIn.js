@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         margin: theme.spacing(12, 4),
         padding: theme.spacing(20, 2),
-        border: '2px red solid',
+        border: '2px grey solid',
     },
     avatar: {
         margin: theme.spacing(1),
@@ -84,8 +84,7 @@ const useStyles = makeStyles((theme) => ({
     },
     submit: {
         margin: theme.spacing(10, 0, 2),
-        padding: theme.spacing(2),
-        minWidth: theme.spacing(40)
+        padding: theme.spacing(2, 4),
     },
 }))
 

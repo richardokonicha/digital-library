@@ -5,7 +5,10 @@ import DocPreview from "./DocPreview"
 import ProjPreview from "./ProjPreview"
 
 import Link from 'next/link'
-import Hidden from '@material-ui/core/Hidden';
+import Hidden from '@material-ui/core/Hidden'
+import { useCollection } from 'react-firebase-hooks/firestore'
+import firebase, { auth, db } from '../../../firebase/clientApp'
+import { useAuthState } from 'react-firebase-hooks/auth'
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -38,6 +41,9 @@ const useStyles = makeStyles((theme) => ({
 
 const Main = ({ materials }) => {
     const classes = useStyles()
+    const [user, loading, error] = useAuthState(auth)
+
+
     return (
         <Container>
             <Hidden xsDown>
@@ -92,7 +98,7 @@ const Main = ({ materials }) => {
 
             </Grid>
 
-            
+
         </Container>
     )
 }

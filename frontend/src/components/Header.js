@@ -17,7 +17,7 @@ export default function PrimarySearchAppBar() {
   const classes = useStyles();
   const theme = useTheme();
   const user = useContext(UserContext)
-  console.log(user.photoURL, 'this is from header')
+  console.log(user, 'this is from header')
   const router = useRouter()
 
 

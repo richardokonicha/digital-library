@@ -15,7 +15,6 @@ const Login = () => {
 
     useEffect(() => {
         if ((user)) {
-            console.log('loading')
             router.push('/')
         }
     }, [user])

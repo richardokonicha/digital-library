@@ -10,7 +10,7 @@ import MobileBar from "../src/components/MobileBar"
 import Layout from '../src/components/Layout'
 
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
-// import Stories from '../src/components/Home/Stories'
+import Stories from '../src/components/Home/Stories'
 
 
 export default function Home({ stories, materials }) {
@@ -24,7 +24,7 @@ export default function Home({ stories, materials }) {
   return (
     <>
       <Layout>
-        {/* <Stories stories={stories} /> */}
+        <Stories stories={stories} />
         <Main materials={materials}></Main>
 
         <MobileBar />

@@ -1,45 +1,25 @@
 import React, { useState } from 'react'
-import { Container } from '@material-ui/core'
-import Header from '../src/components/Header'
+import { Container } from '@material-ui/core'/
+// import Header from '../src/components/Header'
 import Main from '../src/components/Home/Main'
-import dynamic from 'next/dynamic'
+// import dynamic from 'next/dynamic'
 import MobileBar from "../src/components/MobileBar"
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { useCollection } from 'react-firebase-hooks/firestore'
-import firebase from '../firebase/clientApp'
+// import { useAuthState } from 'react-firebase-hooks/auth'
+// import { useCollection } from 'react-firebase-hooks/firestore'
+// import firebase from '../firebase/clientApp'
 import Layout from '../src/components/Layout'
 
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import Stories from '../src/components/Home/Stories'
 
 
-const theme = createMuiTheme({
-    palette: {
-        primary: {
-            light: '#096C3A',
-            main: '#096C3A',
-            dark: '#096C3A',
-        },
-        secondary: {
-            light: '#5b5b5b',
-            main: '#333333',
-            grey: '#FFFFFFA1',
-        },
-        text: {
-            light: '#B0B3B8',
-            main: '#E4E6EB',
-            dark: '#000000',
-        },
-    },
-});
-
 export default function Home({ stories, materials }) {
-    const [user, loading, error] = useAuthState(firebase.auth())
-    const [votes, votesLoading, votesError] = useCollection(firebase.firestore().collection('votes'), {})
+    // const [user, loading, error] = useAuthState(firebase.auth())
+    // const [votes, votesLoading, votesError] = useCollection(firebase.firestore().collection('votes'), {})
 
-    if (!votesLoading && votes) {
-        votes.docs.map((doc) => console.log(doc.data()))
-    }
+    // if (!votesLoading && votes) {
+    //     votes.docs.map((doc) => console.log(doc.data()))
+    // }
 
     return (
         <>

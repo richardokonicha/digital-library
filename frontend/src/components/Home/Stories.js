@@ -4,12 +4,10 @@ import { makeStyles } from '@material-ui/core/styles'
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { red, blue, green } from "@material-ui/core/colors";
 import { AutoRotatingCarousel, Slide } from "material-auto-rotating-carousel";
-// import { MenuIcon } from '@material-ui/core/Icon'
 import Hidden from '@material-ui/core/Hidden';
 import { useAuthState } from "react-firebase-hooks/auth";
 import firebase from '../../../firebase/clientApp'
 import { useCollection } from 'react-firebase-hooks/firestore'
-import NavStories from "../Navigation";
 
 const Stories = ({ stories }) => {
 	const classes = useStyles();
@@ -19,11 +17,11 @@ const Stories = ({ stories }) => {
 	};
 	const matches = useMediaQuery("(max-width:600px)");
 
-	const [user, loading, error] = useAuthState(firebase.auth())
-	const [storiess, storiesLoading, storiesError] = useCollection(firebase.firestore().collection('stories'), {})
-	if (!storiesLoading && storiess) {
-		storiess.docs.map((doc) => console.log(doc.data()))
-	}
+	// const [user, loading, error] = useAuthState(firebase.auth())
+	// const [storiess, storiesLoading, storiesError] = useCollection(firebase.firestore().collection('stories'), {})
+	// if (!storiesLoading && storiess) {
+	// 	storiess.docs.map((doc) => console.log(doc.data()))
+	// }
 
 
 	return (
@@ -55,16 +53,6 @@ const Stories = ({ stories }) => {
 
 				</div>
 			</Hidden>
-
-			<div>
-
-
-				{/* <Toolbar> */}
-				{/* <NavStories /> */}
-
-
-				{/* </Toolbar> */}
-			</div>
 
 		</Container>
 	)

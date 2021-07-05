@@ -3,6 +3,7 @@ import { Container } from '@material-ui/core'
 import Copyright from '../../src/components/Copyright'
 import Header from '../../src/components/Header'
 import Reading from '../../src/components/Reading'
+import Layout from '../../src/components/Layout'
 
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 
@@ -31,13 +32,22 @@ const theme = createMuiTheme({
 
 export default function Home() {
     return (
-        <ThemeProvider theme={theme}>
-            <Header />
 
-            <Container>
+        <Layout>
+            {/* <Stories stories={stories} />
+            <Main materials={materials}></Main> */}
+            <Reading />
 
-                <Reading />
-            </Container>
-        </ThemeProvider>
+
+            {/* <MobileBar /> */}
+        </Layout>
+
+        // <ThemeProvider theme={theme}>
+        //     <Header />
+
+        //     <Container>
+
+        //     </Container>
+        // </ThemeProvider>
     )
 }

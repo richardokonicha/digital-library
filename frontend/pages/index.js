@@ -10,56 +10,56 @@ import MobileBar from "../src/components/MobileBar"
 import Layout from '../src/components/Layout'
 
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
-import Stories from '../src/components/Home/Stories'
+// import Stories from '../src/components/Home/Stories'
 
 
 export default function Home({ stories, materials }) {
-    // const [user, loading, error] = useAuthState(firebase.auth())
-    // const [votes, votesLoading, votesError] = useCollection(firebase.firestore().collection('votes'), {})
+  // const [user, loading, error] = useAuthState(firebase.auth())
+  // const [votes, votesLoading, votesError] = useCollection(firebase.firestore().collection('votes'), {})
 
-    // if (!votesLoading && votes) {
-    //     votes.docs.map((doc) => console.log(doc.data()))
-    // }
+  // if (!votesLoading && votes) {
+  //     votes.docs.map((doc) => console.log(doc.data()))
+  // }
 
-    return (
-        <>
-            <Layout>
-                <Stories stories={stories} />
-                <Main materials={materials}></Main>
+  return (
+    <>
+      <Layout>
+        {/* <Stories stories={stories} /> */}
+        <Main materials={materials}></Main>
 
-                <MobileBar />
-            </Layout>
+        <MobileBar />
+      </Layout>
 
 
 
-            {/* <Container>
+      {/* <Container>
                 <Copyright />
             </Container> */}
-        </>
-    )
+    </>
+  )
 }
 
 const obj = {
-    method: 'GET',
-    headers: {
-        'Authorization': `Bearer ${process.env.AIRTABLE_API_KEY}`,
-        'Content-Type': 'application/json',
-    },
+  method: 'GET',
+  headers: {
+    'Authorization': `Bearer ${process.env.AIRTABLE_API_KEY}`,
+    'Content-Type': 'application/json',
+  },
 }
 
 export const getStaticProps = async () => {
-    const res = await fetch('https://api.airtable.com/v0/app89hVUuXaclfNRh/stories?maxRecords=10&view=Grid%20view', obj);
-    const stories = await res.json();
+  const res = await fetch('https://api.airtable.com/v0/app89hVUuXaclfNRh/stories?maxRecords=10&view=Grid%20view', obj);
+  const stories = await res.json();
 
-    const resm = await fetch('https://api.airtable.com/v0/app89hVUuXaclfNRh/materials?maxRecords=10&view=Grid%20view', obj);
-    const materials = await resm.json();
+  const resm = await fetch('https://api.airtable.com/v0/app89hVUuXaclfNRh/materials?maxRecords=10&view=Grid%20view', obj);
+  const materials = await resm.json();
 
 
-    return {
-        props: {
-            stories: stories.records,
-            materials: materials.records,
-        },
-        revalidate: 10
-    };
+  return {
+    props: {
+      stories: stories.records,
+      materials: materials.records,
+    },
+    revalidate: 10
+  };
 };

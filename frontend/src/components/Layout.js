@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
 
     return (
         <div>
-            {loading ? (<h2>loading</h2>) : (<h3>finished loading</h3>)}
+            {loading ? (<h2>loading</h2>) : (null)}
             {user ? (
                 <div>
                     <UserContext.Provider value={user}>

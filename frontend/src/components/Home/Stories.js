@@ -30,16 +30,17 @@ const Stories = ({ stories }) => {
 		<Container>
 			<Hidden smUp>
 				<div className={classes.root} >
-					<Box fontWeight="fontWeightBold" fontSize={10}>Announcements, news and stories</Box>
+					<Box fontWeight="fontWeightBold" fontSize={16}>Announcements, news and stories</Box>
+
 
 					<GridList cellHeight='auto' className={classes.gridList} cols={3.5}>
-						{storiess?.docs.map(story => (
+						{stories.map(story => (
 							<GridListTile key={story.id}  >
 								<Box flexDirection="column" display="flex" flexWrap="nowrap" onClick={handleClick}>
 									<Box alignSelf="center" >
-										<Avatar alt={story.author} src={story.thumbnails} className={classes.avatar} />
+										<Avatar alt={story.fields.author} src={story.fields["Attachments 2"][0].thumbnails.large.url} className={classes.avatar} />
 									</Box>
-									<Box alignSelf="center" textAlign="center" fontWeight="fontWeightRegular" p={1} fontSize={8}>{story.author}</Box>
+									<Box alignSelf="center" textAlign="center" fontWeight="fontWeightRegular" p={1} fontSize={8}>{story.fields.author}</Box>
 									<AutoRotatingCarouselModal
 										stories={stories}
 										isMobile={matches}
@@ -50,6 +51,8 @@ const Stories = ({ stories }) => {
 							</GridListTile >
 						))}
 					</GridList>
+
+
 				</div>
 			</Hidden>
 

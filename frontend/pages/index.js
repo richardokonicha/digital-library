@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container } from '@material-ui/core'/
+import { Container } from '@material-ui/core'
 // import Header from '../src/components/Header'
 import Main from '../src/components/Home/Main'
 // import dynamic from 'next/dynamic'
